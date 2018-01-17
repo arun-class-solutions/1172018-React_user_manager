@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
+import update from "immutability-helper";
 
 class UserList extends Component {
   constructor() {
     super();
 
     this.state = {
-      users: []
+      users: [],
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: ""
     }
   }
 
@@ -20,6 +25,19 @@ class UserList extends Component {
         users: response.data
       });
     });
+  }
+
+  handleChange(event) {
+    this.setState(update(this.state, {
+      $merge: {
+        [event.target.name]: event.target.value
+      }
+    }));
+  }
+
+  handleSubmit() {
+    // We will submit the data via an AJAX POST request
+    console.log(this.state);
   }
 
   render() {
@@ -81,30 +99,30 @@ class UserList extends Component {
         					First Name
         				</div>
         				<div className="margin-top-20">
-        					<input name="firstname" type="text" className="form-control" placeholder="First Name" />
+        					<input onChange={this.handleChange.bind(this)} name="firstname" type="text" className="form-control" placeholder="First Name" />
         				</div>
         				<div className="bold margin-top-20">
         					Last Name
         				</div>
         				<div className="margin-top-20">
-        					<input name="lastname" type="text" className="form-control" placeholder="Last Name" />
+        					<input onChange={this.handleChange.bind(this)} name="lastname" type="text" className="form-control" placeholder="Last Name" />
         				</div>
         				<div className="bold margin-top-20">
         					Username
         				</div>
         				<div className="margin-top-20">
-        					<input name="username" type="text" className="form-control" placeholder="Username" />
+        					<input onChange={this.handleChange.bind(this)} name="username" type="text" className="form-control" placeholder="Username" />
         				</div>
         				<div className="bold margin-top-20">
         					Email
         				</div>
         				<div className="margin-top-20">
-        					<input name="email" type="text" className="form-control" placeholder="Email" />
+        					<input onChange={this.handleChange.bind(this)} name="email" type="text" className="form-control" placeholder="Email" />
         				</div>
         			</div>
         			<div className="modal-footer">
         				<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        				<button type="submit" className="btn btn-primary">Save User</button>
+        				<button onClick={this.handleSubmit.bind(this)} type="submit" className="btn btn-primary">Save User</button>
         			</div>
         		</div>
         	</div>
