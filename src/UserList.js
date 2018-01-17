@@ -37,7 +37,14 @@ class UserList extends Component {
 
   handleSubmit() {
     // We will submit the data via an AJAX POST request
-    console.log(this.state);
+
+    axios
+    .post("http://myapi-profstream.herokuapp.com/api/2aebd5/persons", this.state)
+    .then((response) => {
+      this.setState({
+        users: this.state.users.concat(response.data)
+      });
+    });
   }
 
   render() {
@@ -122,7 +129,7 @@ class UserList extends Component {
         			</div>
         			<div className="modal-footer">
         				<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        				<button onClick={this.handleSubmit.bind(this)} type="submit" className="btn btn-primary">Save User</button>
+        				<button onClick={this.handleSubmit.bind(this)} type="submit" className="btn btn-primary" data-dismiss="modal">Save User</button>
         			</div>
         		</div>
         	</div>
