@@ -44,9 +44,9 @@ class UserList extends Component {
         		</thead>
 
         		<tbody>
-              { this.state.users.map((user) => {
+              { this.state.users.map((user, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
             				<td>
             					{user.firstname}
             				</td>
