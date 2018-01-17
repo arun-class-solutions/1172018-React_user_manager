@@ -44,23 +44,27 @@ class UserList extends Component {
         		</thead>
 
         		<tbody>
-        			<tr>
-        				<td>
-        					Arun
-        				</td>
-        				<td>
-        					Sood
-        				</td>
-        				<td>
-        					arsood
-        				</td>
-        				<td>
-        					arsood@gmail.com
-        				</td>
-        				<td>
-        					<a href="#" className="btn btn-primary">Edit</a>
-        				</td>
-        			</tr>
+              { this.state.users.map((user) => {
+                return (
+                  <tr>
+            				<td>
+            					{user.firstname}
+            				</td>
+            				<td>
+            					{user.lastname}
+            				</td>
+            				<td>
+            					{user.username}
+            				</td>
+            				<td>
+            					{user.email}
+            				</td>
+            				<td>
+            					<a href="#" className="btn btn-primary">Edit</a>
+            				</td>
+            			</tr>
+                );
+              }) }
         		</tbody>
         	</table>
         </div>
