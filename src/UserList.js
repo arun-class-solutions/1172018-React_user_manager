@@ -1,6 +1,27 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class UserList extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      users: []
+    }
+  }
+
+  componentDidMount() {
+    // Make an AJAX GET request to MyAPI endpoint
+    axios
+    .get("http://myapi-profstream.herokuapp.com/api/2aebd5/persons")
+    .then((response) => {
+      // Set the array from the API to the state so we can iterate over the users and display them on the UI
+      this.setState({
+        users: response.data
+      });
+    });
+  }
+
   render() {
     return (
       <div>
