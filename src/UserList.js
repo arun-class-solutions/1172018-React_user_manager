@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import update from "immutability-helper";
+import { Link } from "react-router-dom";
 
 class UserList extends Component {
   constructor() {
@@ -85,7 +86,13 @@ class UserList extends Component {
             					{user.email}
             				</td>
             				<td>
-            					<a href="#" className="btn btn-primary">Edit</a>
+                      {/* Standard href that reloads the whole page (bad) */}
+            					<a href={`/users/${user.id}`} className="btn btn-primary">Edit</a>
+
+                      {/* Link component that uses proper React routing (good) */}
+                      <Link to={`/users/${user.id}`} className="btn btn-primary">
+                        Edit
+                      </Link>
             				</td>
             			</tr>
                 );
